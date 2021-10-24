@@ -49,13 +49,10 @@ class Create_GUI:
             #content text
             read_file = open(self.target_file,"r")
             
-            #update save state
-            self.data_saved = str(read_file.read())
-            
             #delete old text
             self.file_content.delete("1.0",END)
             #write new text
-            for i in read_file.read:
+            for i in read_file:
                 self.file_content.insert(END,i)
             read_file.close()
         except:
@@ -75,16 +72,10 @@ class Create_GUI:
             #get data
             data = self.file_content.get("1.0",END)
 
-            #update save state
-            self.data_saved = str(data)
-            print(self.data_saved)
-
             #content text
             read_write_file = open(self.target_file,"w")
             read_write_file.write(data)
             read_write_file.close()
-
-            
         except:
             self.file_name_text.set(self.file_name_string)
             messagebox.showinfo("Saving Cancelled","NOTHING SAVED")
@@ -92,15 +83,6 @@ class Create_GUI:
     #Close Document
     def close_file(self):
         try:
-            #get data
-            data = self.file_content.get("1.0",END)
-
-            if data != self.data_saved:
-                print("different")
-            #check changes before resetting
-            confirm_changes = messagebox.askyesno("Changes Unsaved","Save Changes?")
-
-            #empty input and title
             self.file_name_text.set("Untitled")
             self.file_content.delete("1.0",END)
         except:
