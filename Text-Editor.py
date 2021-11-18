@@ -20,6 +20,7 @@ class Create_GUI:
         self.menu_bar.add_command(label="Open",font=("times new roman",12,"bold"),command=self.open_file)
         self.menu_bar.add_command(label="Save",font=("times new roman",12,"bold"),command=self.save_file)
         self.menu_bar.add_command(label="Close Document",font=("times new roman",12,"bold"),command=self.close_file)
+        self.menu_bar.add_command(label="Exit",font=("times new roman",12,"bold"),command=self.close_app)
         
         #file name
         self.file_name_string = "Untitled"
@@ -57,7 +58,7 @@ class Create_GUI:
             read_file.close()
         except:
             self.file_name_text.set(self.file_name_string)
-            messagebox.showinfo("No file selected","NOTHING SELECTED")
+            messagebox.showinfo("No file opened","NOTHING OPENED")
     
     #File Save
     def save_file(self):
@@ -85,6 +86,12 @@ class Create_GUI:
         try:
             self.file_name_text.set("Untitled")
             self.file_content.delete("1.0",END)
+        except:
+            messagebox.showerror("Error","ERROR")
+
+    def close_app(self):
+        try:
+            self.root.destroy()
         except:
             messagebox.showerror("Error","ERROR")
 
